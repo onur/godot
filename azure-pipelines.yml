@@ -23,12 +23,12 @@ steps:
   displayName: 'Install scons'
 
 - script: |
-    ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) scons platform=android target=release android_arch=armv7
-    ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) scons platform=android target=release android_arch=arm64v8
-    ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) scons platform=android target=release android_arch=x86
+    ANDROID_NDK_ROOT=$ANDROID_NDK_HOME scons platform=android target=release android_arch=armv7
+    ANDROID_NDK_ROOT=$ANDROID_NDK_HOME scons platform=android target=release android_arch=arm64v8
+    ANDROID_NDK_ROOT=$ANDROID_NDK_HOME scons platform=android target=release android_arch=x86
   displayName: 'Run scons'
 
 - script: |
-    cd platform/android/java && ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) ./gradlew build
+    cd platform/android/java && ANDROID_NDK_ROOT=$ANDROID_NDK_HOME ./gradlew build
     ls -lah bin
   displayName: 'Build'
