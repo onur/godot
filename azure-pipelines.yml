@@ -17,7 +17,7 @@ resources:
 container: android
 
 steps:
-- script: sudo apt-get update && sudo apt-get install scons
+- script: sudo apt-get update && sudo apt-get install scons pkg-config
   displayName: 'Install system deps'
 
 - script: env
