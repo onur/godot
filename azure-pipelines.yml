@@ -4,10 +4,17 @@ trigger:
   branches:
     include:
       - 3.1.2-stable+android
-container: circleci/android:api-27-ndk
 
 pool:
   vmImage: 'ubuntu-latest'
+
+resources:
+  containers:
+    - container: android
+      image: circleci/android:api-27-ndk
+      options: '-u 0'
+
+container: android
 
 steps:
 - script: |
