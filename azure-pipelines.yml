@@ -24,7 +24,7 @@ steps:
         libxrandr-dev yasm gradle 
   displayName: 'Install system deps'
 
-- script: env
+- script: env | sort
   displayName: 'env'
 
 - script: |
@@ -35,4 +35,5 @@ steps:
 
 - script: |
     cd platform/android/java && ./gradlew build
+    ls -lah bin
   displayName: 'build'
