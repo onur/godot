@@ -16,27 +16,19 @@ resources:
 
 container: android
 
-variables:
-  ANDROID_NDK_ROOT: $(ANDROID_NDK_HOME)
-
 steps:
 - script: |
     sudo apt-get update
-    sudo apt-get install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev \
-        libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libfreetype6-dev libudev-dev libxi-dev \
-        libxrandr-dev yasm
-  displayName: 'Install system deps'
-
-- script: env | sort
-  displayName: 'env'
+    sudo apt-get install scons
+  displayName: 'Install scons'
 
 - script: |
-    scons platform=android target=release android_arch=armv7
-    scons platform=android target=release android_arch=arm64v8
-    scons platform=android target=release android_arch=x86
-  displayName: 'scons'
+    ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) scons platform=android target=release android_arch=armv7
+    ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) scons platform=android target=release android_arch=arm64v8
+    ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) scons platform=android target=release android_arch=x86
+  displayName: 'Run scons'
 
 - script: |
-    cd platform/android/java && ./gradlew build
+    cd platform/android/java && ANDROID_NDK_ROOT=$(ANDROID_NDK_HOME) ./gradlew build
     ls -lah bin
-  displayName: 'build'
+  displayName: 'Build'
