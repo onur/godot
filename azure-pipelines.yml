@@ -17,6 +17,12 @@ resources:
 container: android
 
 steps:
+- script: apt-get update && apt-get install scons
+  displayName: 'Install system deps'
+
+- script: env
+  displayName: 'env'
+
 - script: |
     scons platform=android target=release android_arch=armv7
     scons platform=android target=release android_arch=arm64v8
