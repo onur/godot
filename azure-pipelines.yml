@@ -2,7 +2,8 @@
 
 trigger:
   branches:
-    include: 3.1.2-stable+android
+    include:
+      - 3.1.2-stable+android
 container: circleci/android:api-27-ndk
 
 pool:
