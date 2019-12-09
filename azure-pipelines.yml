@@ -18,4 +18,4 @@ steps:
 
 - script: |
     cd platform/android/java && ./gradlew build
-  displayName: 'build'Run a multi-line script'
+  displayName: 'build'
