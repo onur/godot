@@ -1,16 +1,18 @@
-condition: eq(variables['Build.SourceBranch'], '3.1.2-stable+android')
 container: circleci/android:api-27-ndk
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: |
-    scons platform=android target=release android_arch=armv7
-    scons platform=android target=release android_arch=arm64v8
-    scons platform=android target=release android_arch=x86
-  displayName: 'scons'
+jobs:
+  - job: build
+    condition: eq(variables['Build.SourceBranch'], '3.1.2-stable+android')
+    steps:
+    - script: |
+        scons platform=android target=release android_arch=armv7
+        scons platform=android target=release android_arch=arm64v8
+        scons platform=android target=release android_arch=x86
+      displayName: 'scons'
 
-- script: |
-    cd platform/android/java && ./gradlew build
-  displayName: 'build'
+    - script: |
+        cd platform/android/java && ./gradlew build
+      displayName: 'build'
